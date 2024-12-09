@@ -1,0 +1,16 @@
+type NFT = record {
+    token_id: nat64;
+    owner: text;
+    metadata_url: text;
+    price: opt nat64;
+};
+
+
+service : {
+    init: () -> ();
+
+    mint_and_list: (metadata_url: text, price: opt nat64) -> (token_id: nat64);
+    buy: (token_id: nat64) -> ();
+    get_all_nfts: () -> (vec NFT);
+
+};
