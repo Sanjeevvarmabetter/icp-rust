@@ -1,7 +1,8 @@
+
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { HttpAgent, Actor } from "@dfinity/agent";
-import { idlFactory } from "./declarations/nft_marketplace_backend"; // Replace with your IDL factory
+import { idlFactory } from "./declarations/nft_marketplace_backend"; // Import your IDL Factory
 import { Principal } from "@dfinity/principal";
 
 // Replace with your deployed canister ID
@@ -14,12 +15,16 @@ const App = () => {
   const [file, setFile] = useState(null);
   const [actor, setActor] = useState(null);
 
-  const PINATA_API_KEY = "";
-  const PINATA_SECRET_API_KEY = "";
+  const PINATA_API_KEY = "20a1ac93e10b67f081c5";
+  const PINATA_SECRET_API_KEY = "2b3680b650e07a507c4df5a9649b9b6438d7f8e4c3cc0cfab22a73bb968d02d7";
 
-  // Initialize the IC actor
+
   useEffect(() => {
-    const agent = new HttpAgent({ host: "http://127.0.0.1:4943" });
+    const agent = new HttpAgent({ host: "http://127.0.0.1:4943" }); // Local development URL
+    agent.fetchRootKey().catch((e) => {
+      console.error("Failed to fetch root key:", e);
+    });
+
     const actorInstance = Actor.createActor(idlFactory, {
       agent,
       canisterId,
@@ -27,6 +32,7 @@ const App = () => {
     setActor(actorInstance);
     fetchNFTs(actorInstance);
   }, []);
+
 
   // Fetch all NFTs
   const fetchNFTs = async (actorInstance) => {
@@ -68,7 +74,7 @@ const App = () => {
     try {
       const ipfsUrl = await uploadToPinata(file);
       console.log(ipfsUrl);
-      const priceValue = price ? BigInt(price) : undefined; // Convert price to BigInt if provided
+      const priceValue = price ? Number(price) : undefined; // Convert price to BigInt if provided
       const tokenId = await actor.mint_and_list(ipfsUrl, priceValue);
       alert(`NFT minted successfully with Token ID: ${tokenId}`);
       fetchNFTs(actor);

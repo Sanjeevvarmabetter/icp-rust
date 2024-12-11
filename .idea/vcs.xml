@@ -2,6 +2,6 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/icp_rust/nft_marketplace" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/app/nft_marketplace" vcs="Git" />
   </component>
 </project>
