@@ -47,6 +47,7 @@ const App = () => {
     }
   };
 
+
   return (
       <Router>
         <div className="App">
@@ -91,5 +92,4 @@ const App = () => {
       </Router>
   );
 };
-
 export default App;
