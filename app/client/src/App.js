@@ -74,8 +74,9 @@ const App = () => {
     try {
       const ipfsUrl = await uploadToPinata(file);
       console.log(ipfsUrl);
-      const priceValue = price ? Number(price) : undefined; // Convert price to BigInt if provided
-      const tokenId = await actor.mint_and_list(ipfsUrl, priceValue);
+      const priceValue = price ? [BigInt(price)] : [];
+     console.log(priceValue);
+       const tokenId = await actor.mint_and_list(ipfsUrl, priceValue);
       alert(`NFT minted successfully with Token ID: ${tokenId}`);
       fetchNFTs(actor);
     } catch (error) {
