@@ -6,7 +6,7 @@ import Navigation from "./components/Nav";
 import Create from "./pages/Create";  // Ensure this page is created
 import { Principal } from "@dfinity/principal";
 import "./App.css"
-const canisterId = "a4tbr-q4aaa-aaaaa-qaafq-cai";
+const canisterId = "bkyz2-fmaaa-aaaaa-qaaaq-cai";
 
 const App = () => {
   const [nfts, setNfts] = useState([]);
